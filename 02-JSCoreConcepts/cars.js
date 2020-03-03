@@ -1,6 +1,14 @@
 function isCar(car1, car2, car3) {
-    // return 
+    if(car1==true && car2==true && car3==true){
+        return true;
+    }else if(car1==false && car2==false && car3==false){
+        return true;
+    }else{
+        return false;
+    }
 }
+
+console.log("**********4**********");
 
 console.log(isCar(true, true, true));
 console.log(isCar(false, false, false));
