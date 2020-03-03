@@ -1,16 +1,22 @@
-class Person{
-    constructor(imie,nazwisko){
-        this.imie=imie;
-        this.nazwisko=nazwisko;
+console.log("**********8**********");
+
+class Person {
+    constructor(name, surname) {
+        this.name = name;
+        this.surname = surname;
     }
 
-    zwrocImieINAZWISKO(){
-        return imie + nazwisko.toUpperCase();
+    getNameAndUppercaseSurname() {
+        return this.name + " " + this.surname.toUpperCase();
+    }
+
+    getInitials() {
+        return this.name.charAt(0) + "." + this.surname.charAt(0) + ".";
     }
 }
 
-let person = new Person('Jan','Nowak');
-let me = new Person('Weronika','Mirek');
+const person = new Person('Jan', 'Nowak');
+const me = new Person('Weronika', 'Mirek');
 
-console.log("**********8**********");
-console.log(person.zwrocImieINAZWISKO());
+console.log(person.getNameAndUppercaseSurname());
+console.log(person.getInitials());

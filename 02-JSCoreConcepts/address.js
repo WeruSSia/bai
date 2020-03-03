@@ -1,3 +1,5 @@
+console.log("**********1**********");
+
 title = "dr";
 name = "Mateusz";
 surname = 'Kubicki';
@@ -14,11 +16,9 @@ ul. Długa 15
 POLAND
 */
 
-console.log("**********1**********");
-
 console.log(`${title} ${name} ${surname}
 ul. ${street}
 ${zip} ${city}
 ${country.toUpperCase()}`);
 
-console.log(title+" "+name+" "+surname+"\nul. "+street+"\n"+zip+" "+city+"\n"+country.toUpperCase());
+console.log(title + " " + name + " " + surname + "\nul. " + street + "\n" + zip + " " + city + "\n" + country.toUpperCase());

@@ -1,32 +1,48 @@
+console.log("**********9**********")
+
 names = ['Piotr', 'Anna', 'Michał', 'Paulina', 'Mateusz', 'Magda'];
 
 class Students {
     constructor(names) {
-        // ...
+        this.names = names;
     }
 
-    startWith(letter){
-        return // names (array) which starts with the letter
+    startWith(letter) {
+        const students = new Students([]);
+        this.names.forEach(item => {
+            if (item.charAt(0) == letter) {
+                students.names.push(item);
+            }
+        });
+        return students;
     }
 
     sort() {
-        return // names (array) in alphabetical order 
+        const students = new Students([]);
+        this.names.forEach(item => students.names.push(item));
+        students.names.sort();
+        return students;
     }
 
     get() {
-        return // names (array) in natural order
+        return this.names;
     }
 
     getFirst(n) {
-        return // get first 'n' names (array) 
+        const newArray = [];
+        for (let i = 0; i < n; i++) {
+            newArray.push(this.names[i]);
+        }
+        return newArray;
     }
 }
 
 students = new Students(names);
+
 console.log(students.get());
-console.log(students.sort());
-console.log(students.startWith('P'));
-console.log(students.startWith('M').sort());
+console.log(students.sort().get());
+console.log(students.startWith('P').get());
+console.log(students.startWith('M').sort().get());
 console.log(students.sort().getFirst(4));
 console.log(students.startWith('M').sort().getFirst(2));
 console.log(students.get());
