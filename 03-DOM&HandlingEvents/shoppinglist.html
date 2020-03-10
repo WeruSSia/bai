@@ -21,6 +21,13 @@
 
     <script>
     	// a JavaScript code here ...
+        const addButton = document.getElementsByTagName("button")[0];
+        const shoppingList = document.getElementsByTagName("ol")[0];
+        function addItem(){
+            let item = document.getElementsByTagName("input")[0].value;
+            document.getElementsByTagName("ol").appendChild(item);
+        }
+        addButton.addEventListener("click",addItem);
 
     </script>
 </body>

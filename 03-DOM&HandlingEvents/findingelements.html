@@ -12,7 +12,21 @@
 
     <script>
         // a JavaScript code here ...
+        const h1 = document.getElementsByTagName("h1")[0];
+        const someText = document.getElementById("someTest");
+        const important = document.getElementsByClassName("important")[0];
+        const paragraphs = document.getElementsByTagName("p");
 
+        function printParagraphs(arr) {
+            for (let paragraph of arr) {
+                console.log(paragraph);
+            }
+        }
+
+        console.log(h1);
+        console.log(someText);
+        console.log(important);
+        printParagraphs(paragraphs);
     </script>
 </body>
 
