@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Typing test</title>
-		<meta charset="UTF-8">
-	</head>
-	<body>
-		<h1>How fast are your fingers?</h1>
-		<h3>You have 30 seconds. Just start typing...</h3>
-		<p>Nam strzelać nie kazano. - Wstąpiłem na działo<br>
+
+<head>
+	<title>Typing test</title>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<h1>How fast are your fingers?</h1>
+	<h3>You have 30 seconds. Just start typing...</h3>
+	<p>Nam strzelać nie kazano. - Wstąpiłem na działo<br>
 		I spójrzałem na pole; dwieście armat grzmiało.<br>
 		Artyleryi ruskiej ciągną się szeregi,<br>
 		Prosto, długo, daleko, jako morza brzegi;<br>
@@ -19,13 +21,25 @@
 		Czarne chorągwie na śmierć prowadzą zastępy.<br>
 		Przeciw nim sterczy biała, wąska, zaostrzona,<br>
 		Jak głaz bodzący morze, reduta Ordona.</p>
-		
-		<textarea rows="15" cols="50"></textarea><br>
-		
-		<script>
-			// a JavaScript code here ...
-			
-		</script>
-		
-	</body>
+
+	<textarea rows="15" cols="50"></textarea><br>
+
+	<script>
+		// a JavaScript code here ...
+		const textArea = document.getElementsByTagName("textarea")[0];
+		function setTimer() {
+			textArea.removeEventListener("input", setTimer);
+			setTimeout(() => {
+				const numberOfCharacters = textArea.value.replace(/ /g, '').length;
+				const numberOfWords = textArea.value.split(' ').length;
+				const p = document.createElement("p");
+				document.getElementsByTagName("body")[0].append(p);
+				p.textContent = "You typed in " + numberOfWords + " words, what gives " + numberOfCharacters + " characters.";
+			}, 30000);
+		}
+		textArea.addEventListener("input", setTimer);
+	</script>
+
+</body>
+
 </html>

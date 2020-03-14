@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Create DOM elements</title>
-		<meta charset="UTF-8">
-	</head>
-	<body>
-		<script>
-			// a JavaScript code here ...
-			
-		</script>
-	</body>
+
+<head>
+	<title>Create DOM elements</title>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<script>
+		// a JavaScript code here ...
+		const table = document.createElement("table");
+		const firstRow = table.insertRow(0);
+		const secondRow = table.insertRow(1);
+
+		const cell1 = firstRow.insertCell(0);
+		const cell2 = firstRow.insertCell(1);
+		const cell3 = secondRow.insertCell(0);
+		const cell4 = secondRow.insertCell(1);
+
+		function setUpCell(cell, number) {
+			cell.innerHTML = number;
+			cell.style.textAlign = 'center';
+			cell.style.border = '1px solid black';
+		}
+
+		setUpCell(cell1, 1);
+		setUpCell(cell2, 2);
+		setUpCell(cell3, 3);
+		setUpCell(cell4, 4);
+
+		table.style.width = '100px';
+		table.style.border = '1px solid black';
+
+		document.getElementsByTagName("body")[0].appendChild(table);
+
+	</script>
+</body>
+
 </html>
