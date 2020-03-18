@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Personal data</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <button id="displayButton">Display data</button>
+    <ol id="list">
+
+    </ol>
+
+    <script>
+        const button = document.getElementById("displayButton");
+        const request = new XMLHttpRequest();
+        let people = [];
+        const ol = document.getElementById("list");
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                people = JSON.parse(this.responseText);
+                for (let person of people) {
+                    const li = document.createElement("li");
+                    li.append(person.name + " " + person.surname.toUpperCase() + ", " + person.country);
+                    ol.appendChild(li);
+                }
+            }
+        };
+        button.addEventListener('click', () => {
+            request.open("GET", "people.json");
+            request.send();
+        });
+    </script>
+</body>
+
+</html>
