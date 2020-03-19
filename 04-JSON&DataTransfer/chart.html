@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chart</title>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+</head>
+
+<body>
+    <canvas id="myChart" width="400" height="400"></canvas>
+
+    <script>
+
+        const request = new XMLHttpRequest();
+        let goldPricesAllData = [];
+        let goldPrices = [];
+        let goldPricesDates = [];
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                goldPricesAllData
+                    = JSON.parse(this.response);
+                for (let i = 0; i < goldPricesAllData
+                    .length; i++) {
+                    goldPrices[i] = goldPricesAllData
+                    [i].cena;
+                    goldPricesDates[i] = goldPricesAllData[i].data;
+                }
+                console.log(goldPrices);
+            }
+        };
+        request.open("GET", "http://api.nbp.pl/api/cenyzlota/last/10");
+        request.send();
+
+        const ctx = document.getElementById("myChart");
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: goldPricesDates,
+                datasets: [{
+                    label: 'Gold prices',
+                    data: goldPrices,
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
