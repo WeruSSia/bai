@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 </head>
+
 <body>
+  <div id="app">
+    <canvas id="myChart" width="400" height="400"></canvas>
+  </div>
   <script>
     var app = new Vue({
       el: '#app',
       data: {
-        films: [
+        languages: [
           {
             language: 'Python',
             popularity: 25.95
@@ -29,9 +35,64 @@
             language: 'Php',
             popularity: 7.37
           }
-        ] 
+        ]
+      },
+      computed: {
+        labels: function () {
+          const labelsArray = [];
+          for (let i = 0; i < this.languages.length; i++) {
+            labelsArray[i] = this.languages[i].language;
+          }
+          return labelsArray;
+        },
+        popularities: function () {
+          const popularityArray = [];
+          for (let i = 0; i < this.languages.length; i++) {
+            popularityArray[i] = this.languages[i].popularity;
+          }
+          return popularityArray;
+        }
+      }
+    });
+
+    const ctx = document.getElementById("myChart");
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: app.labels,
+        datasets: [{
+          label: 'Programming languages popularity',
+          data: app.popularities,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWIdth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
       }
     });
   </script>
 </body>
+
 </html>
