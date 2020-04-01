@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" v-model="value" v-on:click="countClick" value="value">
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                value: 0
+            },
+            methods: {
+                countClick: function ($event) {
+                    this.value = this.value + 1;
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

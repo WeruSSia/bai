@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <h1>Select courses:</h1>
+    <div id="app">
+        <input type="checkbox" id="course1" value="Bogate Aplikacje Internetowe" v-model="courses">
+        <label for="course1">Bogate Aplikacje Internetowe</label><br>
+        <input type="checkbox" id="course2" value="Programowanie kreatywne" v-model="courses">
+        <label for="course2">Programowanie kreatywne</label><br>
+        <input type="checkbox" id="course3" value="Modelowanie symulacji komputerowych" v-model="courses">
+        <label for="course3">Modelowanie symulacji komputerowych</label><br>
+        <input type="checkbox" id="course4" value="Metody optymalizacji procesów" v-model="courses">
+        <label for="course4">Metody optymalizacji procesów</label><br>
+        <input type="checkbox" id="course5" value="Marketing i handel elektroniczny" v-model="courses">
+        <label for="course5">Marketing i handel elektroniczny</label><br>
+        <p v-if="numberOfCourses==1">{{numberOfCourses}} course chosen.</p>
+        <p v-else>{{numberOfCourses}} courses chosen.</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                courses: []
+            },
+            computed: {
+                numberOfCourses: function () {
+                    return this.courses.length;
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
