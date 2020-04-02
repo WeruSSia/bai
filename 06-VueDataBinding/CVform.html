@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <span>Name: </span>
+        <input type="text" v-model="name"><br>
+        <span>Surname: </span>
+        <input type="text" v-model="surname"><br>
+        <span>Age: </span>
+        <input type="number" v-model="age"><br>
+        <span>Gender: </span>
+        <input type="radio" id="male" value="male" v-model="gender">
+        <label for="male">Male</label>
+        <input type="radio" id="female" value="female" v-model="gender">
+        <label for="female">Female</label><br>
+        <select v-model="educationLevel">
+            <option disabled value="">Education level</option>
+            <option>Did not attend school</option>
+            <option>Primary school</option>
+            <option>Secondary school</option>
+            <option>High school</option>
+            <option>College</option>
+            <option>University</option>
+        </select><br>
+        <span>Skills: </span><br>
+        <input type="checkbox" id="computer_skills" value="Computer skills" v-model="skills">
+        <label for="computer_skills">Computer skills</label><br>
+        <input type="checkbox" id="driving_license" value="Driving license" v-model="skills">
+        <label for="driving_license">Driving license</label><br>
+        <input type="checkbox" id="creativity" value="Creativity" v-model="skills">
+        <label for="creativity">Creativity</label><br>
+        <input type="checkbox" id="teamwork" value="Team work" v-model="skills">
+        <label for="teamwork">Team work</label><br>
+        <input type="button" value="Save" id="save_button" v-on:click="saveToLocalStorage">
+        <input type="button" value="Read" id="read_button" v-on:click="readFromLocalStorage">
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                name: '',
+                surname: '',
+                age: '',
+                gender: '',
+                educationLevel: '',
+                skills: []
+            },
+            methods: {
+                saveToLocalStorage: function ($event) {
+                    const person = { name: this.name, surname: this.surname, age: this.age, gender: this.gender, educationLevel: this.educationLevel, skills: this.skills };
+                    localStorage.setItem("person", JSON.stringify(person));
+                },
+                readFromLocalStorage: function ($event) {
+                    const person = JSON.parse(localStorage.getItem("person"));
+                    const div = document.createElement("div");
+                    div.innerHTML = "Name: " + person.name + "<br>" +
+                        "Surname: " + person.surname + "<br>" +
+                        "Age: " + person.age + "<br>" +
+                        "Gender: " + person.gender + "<br>" +
+                        "Education level: " + person.educationLevel + "<br>" +
+                        "Skills: " + person.skills + "<br><br>";
+                    document.getElementsByTagName("body")[0].append(div);
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
