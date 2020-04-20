@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <dec-to-bin :dec=8></dec-to-bin>
+        <dec-to-bin :dec=170></dec-to-bin>
+        <dec-to-bin :dec=204></dec-to-bin>
+        <dec-to-bin :dec=3855></dec-to-bin>
+    </div>
+
+    <script type="text/x-template" id="dec-to-bin-template">
+        <p>{{dec}}(10) = {{convert()}}(2)</p>
+    </script>
+
+    <script>
+        Vue.component('dec-to-bin', {
+            template: '#dec-to-bin-template',
+            props: {
+                dec: Number
+            },
+            methods: {
+                convert: function () {
+                    return (this.dec >>> 0).toString(2);
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app',
+        })
+    </script>
+
+</body>
+
+</html>

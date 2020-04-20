@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <euro-rate></euro-rate>
+    </div>
+
+    <script type="text/x-template" id="euro-rate-template">
+        <div>
+            EUR: {{rate}}
+        </div>
+    </script>
+
+    <script>
+        Vue.component('euro-rate', {
+            template: '#euro-rate-template',
+            data() {
+                return {
+                    rate: 0
+                }
+            },
+            mounted() {
+                this.getExchangeRate
+            },
+            computed: {
+                getExchangeRate: function () {
+                    const comp = this;
+                    const url = "http://api.nbp.pl/api/exchangerates/rates/a/eur";
+                    const request = new XMLHttpRequest();
+                    request.open("GET", url);
+                    request.onreadystatechange = () => {
+                        if (request.readyState == 4 && request.status == 200) {
+                            comp.rate = JSON.parse(request.responseText).rates[0].mid;
+                        }
+                    };
+                    request.send();
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app',
+        })
+
+    </script>
+
+</body>
+
+</html>

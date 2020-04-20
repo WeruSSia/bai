@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <movie-info title="Identity" director="James Mangold" year="2003"></movie-info>
+        <movie-info title="Inside Out" director="Pete Docter" year="2015"></movie-info>
+        <movie-info title="Scent of a Woman" director="Martin Brest" year="1992"></movie-info>
+    </div>
+
+    <script type="text/x-template" id="movie-info-template">
+        <div>
+        <p><b>Title:</b> {{title}}</p>
+        <p><b>Director:</b> {{director}}</p>
+        <p><b>Production year:</b> {{year}}</p>
+        <br>
+        </div>
+    </script>
+    <script>
+        Vue.component('movie-info', {
+            template: '#movie-info-template',
+            props: ['title', 'director', 'year']
+        })
+
+        new Vue({
+            el: '#app'
+        })
+    </script>
+
+</body>
+
+</html>
